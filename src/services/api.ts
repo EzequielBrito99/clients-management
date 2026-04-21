@@ -1,7 +1,8 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
+import { BASE_URL } from './endpoints';
 
 const api = axios.create({
-  baseURL: 'https://pruebareactjs.test-class.com/Api/',
+  baseURL: BASE_URL,
 });
 
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
