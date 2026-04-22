@@ -8,7 +8,7 @@ import { NotificationProvider } from './context/NotificationContext';
 
 import Login from './views/Login/Login';
 import Register from './views/Register/Register';
-import Home from './views/Home';
+import Home from './views/Home/Home';
 import ConsultaClientes from './views/ConsultaClientes/ConsultaClientes';
 import MantenimientoCliente from './views/MantenimientoClientes/MantenimientoCliente';
 import NotFound from './views/NotFound/NotFound';

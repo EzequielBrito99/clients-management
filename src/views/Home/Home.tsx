@@ -1,24 +1,17 @@
 import React from 'react';
 import { Container, Typography, Box } from '@material-ui/core';
+import { useStyles } from './Home.styles';
 
 const Home: React.FC = () => {
+  const classes = useStyles();
 
   return (
-    <Container 
-      maxWidth="md" 
-      style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '80vh'
-      }}
-    >
-      <Box textAlign="center">
+    <Container maxWidth="md" className={classes.mainContainer}>
+      <Box className={classes.welcomeBox}>
         <Typography 
           variant="h2" 
-          color="primary" 
           gutterBottom 
-          style={{ fontWeight: 700, letterSpacing: '-1px' }}
+          className={classes.title}
         >
           Bienvenido
         </Typography>
