@@ -10,7 +10,7 @@ import { useNotification } from '../../context/NotificationContext';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../services/api';
 import ENDPOINTS from '../../services/endpoints';
-import { GetClientByIDResponse } from '../../types/client';
+import { CreateClientPayload, GetClientByIDResponse } from '../../types/client';
 import { Interests } from '../../types/interests';
 
 interface Interes {
@@ -112,10 +112,10 @@ const MantenimientoCliente: React.FC = () => {
       const payload = {
         ...formData,
         ...(id ? { id } : {}),
-        fNacimiento: formData.fNacimiento ? new Date(formData.fNacimiento).toISOString() : null,
-        fAfiliacion: formData.fAfiliacion ? new Date(formData.fAfiliacion).toISOString() : null,
-        usuarioId: user?.id
-      };
+        fNacimiento: formData.fNacimiento ? new Date(formData.fNacimiento).toISOString() : '',
+        fAfiliacion: formData.fAfiliacion ? new Date(formData.fAfiliacion).toISOString() : '',
+        usuarioId: user?.id || ''
+      } satisfies CreateClientPayload;
 
       await api.post(`${ENDPOINTS.clientes[id ? 'actualizar' : 'crear']}`, payload);
       notify(`Cliente ${id ? 'actualizado' : 'creado'} con éxito`, 'success');

@@ -14,6 +14,20 @@ export interface Client {
   interesesId: string;
 }
 
+export interface GetClient{
+  id:             string;
+  identificacion: string;
+  nombre:         string;
+  apellidos:      string;
+}
+
+export interface GetClientsPayload {
+  identificacion: string;
+  nombre:         string;
+  usuarioId:      string;
+}
+
+export type GetClientsResponse = GetClient[]
 
 export interface GetClientByIDResponse {
   id:              string;
@@ -30,3 +44,20 @@ export interface GetClientByIDResponse {
   imagen:          string;
   interesesId:     string;
 }
+
+export interface CreateClientPayload {
+  nombre:          string;
+  apellidos:       string;
+  identificacion:  string;
+  celular:         string;
+  otroTelefono:    string;
+  direccion:       string;
+  fNacimiento:     string;
+  fAfiliacion:     string;
+  sexo:            string;
+  resennaPersonal: string;
+  imagen:          string;
+  interesFK:       string;
+  usuarioId:       string;
+}
+

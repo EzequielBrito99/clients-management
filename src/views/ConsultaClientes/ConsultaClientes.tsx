@@ -7,7 +7,7 @@ import {
 import { Search as SearchIcon, Add as AddIcon, Edit as EditIcon, Undo, Delete } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
 import { useStyles } from './ConsultaClientes.styles';
-import { Client } from '../../types/client';
+import { GetClient, GetClientsPayload, GetClientsResponse } from '../../types/client';
 import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
 import api from '../../services/api';
@@ -16,12 +16,12 @@ import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog';
 
 const ConsultaClientes: React.FC = () => {
   const classes = useStyles();
-  const [clientes, setClientes] = useState<Client[]>([]);
+  const [clientes, setClientes] = useState<GetClientsResponse>([]);
   const [filter, setFilter] = useState({ nombre: '', identificacion: '' });
   const [loading, setLoading] = useState(false);
 
   const [openConfirm, setOpenConfirm] = useState(false);
-  const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+  const [selectedClient, setSelectedClient] = useState<GetClient | null>(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   const { user } = useAuth();
@@ -31,11 +31,11 @@ const ConsultaClientes: React.FC = () => {
   const fetchClientes = async () => {
     setLoading(true);
     try {
-      const response = await api.post(ENDPOINTS.clientes.listado, {
+      const response = await api.post<GetClientsResponse>(ENDPOINTS.clientes.listado, {
         identificacion: filter.identificacion.trim() || '',
         nombre: filter.nombre.trim() || '',
-        usuarioId: user?.id
-      });
+        usuarioId: user?.id || ''
+      } satisfies GetClientsPayload);
       setClientes(response.data);
     } catch (error) {
       notify('Error al cargar el listado de clientes', 'error');
@@ -54,7 +54,7 @@ const ConsultaClientes: React.FC = () => {
     setFilter(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleDeleteClick = (cliente: Client) => {
+  const handleDeleteClick = (cliente: GetClient) => {
     setSelectedClient(cliente);
     setOpenConfirm(true);
   };

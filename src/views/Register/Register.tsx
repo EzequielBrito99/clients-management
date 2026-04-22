@@ -10,6 +10,7 @@ import { useNotification } from '../../context/NotificationContext';
 import ENDPOINTS from '../../services/endpoints';
 import { EMAIL_REGEX, PWD_REGEX } from '../../helpers/utils';
 import { useStyles } from './Register.styles';
+import { RegisterPayload, RegisterResponse } from '../../types/auth';
 
 const Register: React.FC = () => {
   const classes = useStyles();
@@ -85,11 +86,11 @@ const Register: React.FC = () => {
 
     setLoading(true);
     try {
-      await api.post(ENDPOINTS.auth.register, {
+      await api.post<RegisterResponse>(ENDPOINTS.auth.register, {
         username: formData.username,
         email: formData.email,
         password: formData.password
-      });
+      } satisfies RegisterPayload);
 
       notify('Usuario registrado exitosamente. Ya puede iniciar sesión.', 'success');
       history.push('/login');

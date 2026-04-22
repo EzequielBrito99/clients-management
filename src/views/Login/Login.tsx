@@ -7,10 +7,11 @@ import {
 } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useStyles } from './Login.styles';
-import { useAuth } from '../../context/AuthContext';
+import { LoginResponse, useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
 import api from '../../services/api';
 import ENDPOINTS from '../../services/endpoints';
+import { LoginPayload } from '../../types/auth';
 
 const Login: React.FC = () => {
   const classes = useStyles();
@@ -47,10 +48,10 @@ const Login: React.FC = () => {
 
     setLoading(true);
     try {
-      const response = await api.post(ENDPOINTS.auth.login, {
+      const response = await api.post<LoginResponse>(ENDPOINTS.auth.login, {
         username: formData.username,
         password: formData.password
-      });
+      } satisfies LoginPayload);
 
       if (formData.rememberMe) {
         localStorage.setItem('rememberedUsername', formData.username);
