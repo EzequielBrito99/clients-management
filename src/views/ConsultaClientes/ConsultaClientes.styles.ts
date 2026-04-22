@@ -34,6 +34,9 @@ export const useStyles = makeStyles((theme) => ({
     maxHeight: 'calc(100vh - 320px)',
     overflowY: 'auto',
     boxShadow: theme.shadows[3],
+    [theme.breakpoints.down('sm')]: {
+      maxHeight: 'calc(100vh - 100px)',
+    },
 
     '&::-webkit-scrollbar': {
       width: '8px',
