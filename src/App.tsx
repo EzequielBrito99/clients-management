@@ -12,10 +12,11 @@ import Home from './views/Home';
 import ConsultaClientes from './views/ConsultaClientes';
 import MantenimientoCliente from './views/MantenimientoCliente';
 import NotFound from './views/NotFound';
+import MainLayout from './components/MainLayout/MainLayout';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAuth();
-  
+
   return (
     <AuthProvider>
       <ThemeProvider theme={theme}>
@@ -28,10 +29,12 @@ const App: React.FC = () => {
               </Route>
               <Route exact path="/register" component={Register} />
 
-              <PrivateRoute exact path="/home" component={Home} />
-              <PrivateRoute exact path="/clientes" component={ConsultaClientes} />
-              <PrivateRoute exact path="/mantenimiento" component={MantenimientoCliente} />
-              <PrivateRoute exact path="/mantenimiento/:id" component={MantenimientoCliente} />
+              <MainLayout>
+                <PrivateRoute exact path="/home" component={Home} />
+                <PrivateRoute exact path="/clientes" component={ConsultaClientes} />
+                <PrivateRoute exact path="/mantenimiento" component={MantenimientoCliente} />
+                <PrivateRoute exact path="/mantenimiento/:id" component={MantenimientoCliente} />
+              </MainLayout>
 
               <Route exact path="/">
                 <Redirect to="/home" />
