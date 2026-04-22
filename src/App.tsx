@@ -6,7 +6,7 @@ import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import theme from './theme';
 import { NotificationProvider } from './context/NotificationContext';
 
-import Login from './views/Login';
+import Login from './views/Login/Login';
 import Register from './views/Register';
 import Home from './views/Home';
 import ConsultaClientes from './views/ConsultaClientes/ConsultaClientes';
