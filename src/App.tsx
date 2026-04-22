@@ -10,7 +10,7 @@ import Login from './views/Login';
 import Register from './views/Register';
 import Home from './views/Home';
 import ConsultaClientes from './views/ConsultaClientes/ConsultaClientes';
-import MantenimientoCliente from './views/MantenimientoCliente';
+import MantenimientoCliente from './views/MantenimientoClientes/MantenimientoCliente';
 import NotFound from './views/NotFound/NotFound';
 import MainLayout from './components/MainLayout/MainLayout';
 
