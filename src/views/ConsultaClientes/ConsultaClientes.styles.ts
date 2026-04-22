@@ -73,10 +73,10 @@ export const useStyles = makeStyles((theme) => ({
   },
   tableRow: {
     '&:nth-of-type(even)': {
-      backgroundColor: theme.palette.grey[50], // Gris muy sutil
+      backgroundColor: theme.palette.grey[50],
     },
     '&:hover': {
-      backgroundColor: `${theme.palette.primary.main}08 !important`, // Highlight suave al pasar el mouse
+      backgroundColor: `${theme.palette.primary.main}08 !important`,
       transition: 'background-color 0.2s ease',
     },
   },

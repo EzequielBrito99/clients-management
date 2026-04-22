@@ -12,12 +12,17 @@ import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
 import api from '../../services/api';
 import ENDPOINTS from '../../services/endpoints';
+import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog';
 
 const ConsultaClientes: React.FC = () => {
   const classes = useStyles();
   const [clientes, setClientes] = useState<Client[]>([]);
   const [filter, setFilter] = useState({ nombre: '', identificacion: '' });
   const [loading, setLoading] = useState(false);
+
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const { user } = useAuth();
   const { notify } = useNotification();
@@ -47,6 +52,20 @@ const ConsultaClientes: React.FC = () => {
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFilter(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleDeleteClick = (cliente: Client) => {
+    setSelectedClient(cliente);
+    setOpenConfirm(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!selectedClient) return;
+
+    setDeleteLoading(true);
+    setDeleteLoading(false);
+    setOpenConfirm(false);
+    setSelectedClient(null);
   };
 
   return (
@@ -135,7 +154,7 @@ const ConsultaClientes: React.FC = () => {
                       </IconButton>
                       <IconButton
                         color="secondary"
-                        onClick={() => history.push(`/mantenimiento/${cliente.id}`)}
+                        onClick={() => handleDeleteClick(cliente)}
                         title="Editar cliente"
                       >
                         <Delete />
@@ -155,6 +174,16 @@ const ConsultaClientes: React.FC = () => {
             )}
           </TableBody>
         </Table>
+
+        <ConfirmDialog
+          open={openConfirm}
+          title="Confirmar eliminación"
+          description={`¿Estás seguro de que deseas eliminar al cliente ${selectedClient?.nombre} ${selectedClient?.apellidos}? Esta acción no se puede deshacer.`}
+          onConfirm={handleConfirmDelete}
+          onClose={() => setOpenConfirm(false)}
+          loading={deleteLoading}
+          disabled
+        />
       </TableContainer>
     </Box>
   );
