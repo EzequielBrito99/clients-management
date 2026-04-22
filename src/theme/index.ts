@@ -1,34 +1,54 @@
 import { createTheme } from '@material-ui/core/styles';
+import { blue, blueGrey } from '@material-ui/core/colors';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1a237e',
-      light: '#534bae',
-      dark: '#000051',
+      light: blue[700],
+      main: blue[800],
+      dark: blue[900],
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#455a64',
-      light: '#718792',
-      dark: '#1c313a',
+      light: blueGrey[400],
+      main: blueGrey[600],
+      dark: blueGrey[800],
       contrastText: '#ffffff',
     },
     background: {
-      default: '#f5f5f5',
+      default: '#f8f9fa',
+      paper: '#ffffff',
     },
     error: {
-      main: '#d32f2f',
+      main: '#f44336',
     },
+    text: {
+      primary: '#263238',
+      secondary: '#546e7a',
+    }
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h5: {
+    fontFamily: [
+      'Inter',
+      '"Roboto"',
+      '"Helvetica"',
+      '"Arial"',
+      'sans-serif',
+    ].join(','),
+    h4: {
+      fontWeight: 700,
+      letterSpacing: '-0.02em',
+    },
+    h6: {
       fontWeight: 600,
     },
     button: {
       textTransform: 'none',
+      fontWeight: 600,
     },
+  },
+  shape: {
+    borderRadius: 8,
   },
 });
 

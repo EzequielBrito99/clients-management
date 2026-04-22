@@ -9,7 +9,7 @@ import { NotificationProvider } from './context/NotificationContext';
 import Login from './views/Login';
 import Register from './views/Register';
 import Home from './views/Home';
-import ConsultaClientes from './views/ConsultaClientes';
+import ConsultaClientes from './views/ConsultaClientes/ConsultaClientes';
 import MantenimientoCliente from './views/MantenimientoCliente';
 import NotFound from './views/NotFound/NotFound';
 import MainLayout from './components/MainLayout/MainLayout';
