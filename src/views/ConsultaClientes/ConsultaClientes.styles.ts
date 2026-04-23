@@ -18,13 +18,21 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
     borderRadius: 12,
   },
+  searchInputs: {
+    display: 'flex',
+    gap: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      flexDirection: 'column',
+    },
+  },
   searchButton: {
     borderRadius: 8,
     padding: '7px 16px',
   },
   actionButtons: {
     display: 'flex',
-    gap: theme.spacing(2)
+    gap: theme.spacing(2),
   },
   addClient: { borderRadius: 8, padding: '10px 20px' },
   goHome: { borderRadius: 8, padding: '10px 20px' },
@@ -35,7 +43,9 @@ export const useStyles = makeStyles((theme) => ({
     overflowY: 'auto',
     boxShadow: theme.shadows[3],
     [theme.breakpoints.down('sm')]: {
-      maxHeight: 'calc(100vh - 100px)',
+      maxHeight: 'calc(100vh - 470px)',
+      maxWidth: '88vw',
+      overflowX: 'auto',
     },
 
     '&::-webkit-scrollbar': {
@@ -60,7 +70,9 @@ export const useStyles = makeStyles((theme) => ({
     scrollbarColor: `#ccc #f1f1f1`,
   },
   table: {
-    minWidth: 650,
+    [theme.breakpoints.down('sm')]: {
+      minWidth: 'auto',
+    },
   },
   tableHeaderCell: {
     fontWeight: 'bold',

@@ -98,22 +98,24 @@ const ConsultaClientes: React.FC = () => {
 
       <Paper elevation={2} className={classes.filterPaper}>
         <Box display="flex" alignItems="center" justifyContent="flex-end" gridGap={20} flexWrap="wrap">
-          <TextField
-            name="nombre"
-            label="Nombre"
-            variant="outlined"
-            size="small"
-            value={filter.nombre}
-            onChange={handleFilterChange}
-          />
-          <TextField
-            name="identificacion"
-            label="Identificación"
-            variant="outlined"
-            size="small"
-            value={filter.identificacion}
-            onChange={handleFilterChange}
-          />
+          <Box className={classes.searchInputs}>
+            <TextField
+              name="nombre"
+              label="Nombre"
+              variant="outlined"
+              size="small"
+              value={filter.nombre}
+              onChange={handleFilterChange}
+            />
+            <TextField
+              name="identificacion"
+              label="Identificación"
+              variant="outlined"
+              size="small"
+              value={filter.identificacion}
+              onChange={handleFilterChange}
+            />
+          </Box>
           <Button
             variant="outlined"
             color="secondary"
